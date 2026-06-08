@@ -19,6 +19,103 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
+		<style>
+			#students-carousel {
+				position: relative;
+				margin: 2.5rem 0;
+			}
+
+			#students-carousel .carousel-slide {
+				opacity: 0;
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				transition: opacity 0.8s ease;
+			}
+
+			#students-carousel .carousel-slide.active {
+				opacity: 1;
+				position: relative;
+			}
+
+			#students-carousel {
+				position: relative;
+				overflow: hidden;
+				margin: 2.5rem 0;
+			}
+
+			#students-carousel .carousel-slide {
+				opacity: 0;
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				transition: opacity 0.8s ease;
+			}
+
+			#students-carousel .carousel-slide.active {
+				opacity: 1;
+				position: relative;
+			}
+
+			#students-carousel .carousel-controls {
+				position: absolute;
+				top: 50%;
+				left: 0;
+				width: 100%;
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				transform: translateY(-50%);
+				pointer-events: none;
+				padding: 0 1rem;
+			}
+
+			#students-carousel .carousel-controls button {
+				pointer-events: auto;
+				background: rgba(19,21,25,0.75);
+				border: 0;
+				color: #fff;
+				width: 2.5rem;
+				height: 2.5rem;
+				border-radius: 999px;
+				font-size: 1.4rem;
+				cursor: pointer;
+			}
+
+			#students-carousel .carousel-controls button:hover {
+				background: rgba(19,21,25,0.9);
+			}
+
+			#students-carousel .carousel-controls button:focus {
+				outline: 2px solid #fff;
+			}
+
+			#students-carousel .carousel-indicators {
+				position: absolute;
+				bottom: 1rem;
+				left: 50%;
+				transform: translateX(-50%);
+				display: flex;
+				gap: 0.5rem;
+				z-index: 1;
+			}
+
+			#students-carousel .carousel-indicators button {
+				width: 0.85rem;
+				height: 0.85rem;
+				border-radius: 50%;
+				border: 1px solid rgba(255,255,255,0.8);
+				background: rgba(255,255,255,0.35);
+				cursor: pointer;
+				padding: 0;
+			}
+
+			#students-carousel .carousel-indicators button.active {
+				background: rgba(255,255,255,0.95);
+			}
+		</style>
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 	</head>
 	<body class="is-preload">
@@ -147,13 +244,19 @@
 							<article id="about">
 							<h2 class="major">Musical Moments</h2>
 							<p>Some musical moments throughout the years.</p>
-							<span class="image main"><img src="images/students01.jpg" alt="Student musical moment 1" /></span>
-						<span class="image main"><img src="images/students02.jpg" alt="Student musical moment 2" /></span>
-						<span class="image main"><img src="images/students03.jpg" alt="Student musical moment 3" /></span>
-						<span class="image main"><img src="images/students04.jpg" alt="Student musical moment 4" /></span>
-						<span class="image main"><img src="images/students05.jpg" alt="Student musical moment 5" /></span>
-						<span class="image main"><img src="images/students06.jpg" alt="Student musical moment 6" /></span>
-						<span class="image main"><img src="images/students07.jpg" alt="Student musical moment 7" /></span>
+							<div id="students-carousel">
+								<div class="carousel-slide active image main"><img src="images/students01.jpg" alt="Student musical moment 1" /></div>
+								<div class="carousel-slide image main"><img src="images/students02.jpg" alt="Student musical moment 2" /></div>
+								<div class="carousel-slide image main"><img src="images/students03.jpg" alt="Student musical moment 3" /></div>
+								<div class="carousel-slide image main"><img src="images/students04.jpg" alt="Student musical moment 4" /></div>
+								<div class="carousel-slide image main"><img src="images/students05.jpg" alt="Student musical moment 5" /></div>
+								<div class="carousel-slide image main"><img src="images/students06.jpg" alt="Student musical moment 6" /></div>
+								<div class="carousel-slide image main"><img src="images/students07.jpg" alt="Student musical moment 7" /></div>
+								<div class="carousel-controls">
+									<button class="carousel-prev" aria-label="Previous photo">‹</button>
+									<button class="carousel-next" aria-label="Next photo">›</button>
+								</div>
+							</div>
 							</article>
 
 						<!-- Contact -->
@@ -202,6 +305,55 @@
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
+			<script>
+				(function() {
+					var carousel = document.getElementById('students-carousel');
+					if (!carousel) return;
+
+					var slides = Array.prototype.slice.call(carousel.querySelectorAll('.carousel-slide'));
+					var currentIndex = 0;
+					var interval = null;
+
+					function showSlide(index) {
+						slides.forEach(function(slide, i) {
+							slide.classList.toggle('active', i === index);
+						});
+						currentIndex = index;
+					}
+
+					function nextSlide() {
+						showSlide((currentIndex + 1) % slides.length);
+					}
+
+					function prevSlide() {
+						showSlide((currentIndex - 1 + slides.length) % slides.length);
+					}
+
+					function resetInterval() {
+						if (interval) clearInterval(interval);
+						interval = setInterval(nextSlide, 4500);
+					}
+
+					var nextButton = carousel.querySelector('.carousel-next');
+					var prevButton = carousel.querySelector('.carousel-prev');
+
+					if (nextButton) {
+						nextButton.addEventListener('click', function() {
+							nextSlide();
+							resetInterval();
+						});
+					}
+
+					if (prevButton) {
+						prevButton.addEventListener('click', function() {
+							prevSlide();
+							resetInterval();
+						});
+					}
+
+					resetInterval();
+				})();
+			</script>
 
 	</body>
 </html>
