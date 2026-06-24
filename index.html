@@ -148,6 +148,7 @@
 			#testimonials-carousel .testimonial-slides {
 				position: relative;
 				touch-action: pan-y;
+				padding: 0 3rem;
 			}
 
 			#testimonials-carousel .testimonial-slide {
@@ -211,10 +212,16 @@
 						}
 
 			#testimonials-carousel .testimonial-controls {
+				position: absolute;
+				top: 50%;
+				left: 0;
+				width: 100%;
+				transform: translateY(-50%);
 				display: flex;
-				justify-content: center;
-				gap: 0.75rem;
-				margin: 1rem 0 0.85rem;
+				justify-content: space-between;
+				align-items: center;
+				pointer-events: none;
+				z-index: 2;
 			}
 
 			#testimonials-carousel .testimonial-controls button {
@@ -228,13 +235,14 @@
 				line-height: 1;
 				border-radius: 999px;
 				border: 1px solid rgba(255,255,255,0.35);
-				background: rgba(255,255,255,0.08);
+				background: rgba(19,21,25,0.75);
 				color: inherit;
+				pointer-events: auto;
 				cursor: pointer;
 			}
 
 			#testimonials-carousel .testimonial-controls button:hover {
-				background: rgba(255,255,255,0.15);
+				background: rgba(19,21,25,0.9);
 			}
 
 			#testimonials-carousel .testimonial-indicators {
@@ -266,6 +274,10 @@
 				#testimonials-carousel .testimonial-controls button {
 					width: 2.75rem;
 					height: 2.75rem;
+				}
+
+				#testimonials-carousel .testimonial-slides {
+					padding: 0 2.5rem;
 				}
 
 				#testimonials-carousel .testimonial-toggle {
@@ -463,10 +475,10 @@
 									<button type="button" class="testimonial-toggle" aria-expanded="false" aria-controls="testimonial-text-5">Read more</button>
 									<p class="testimonial-author">~Billie R., Parent</p>
 								</section>
-							</div>
-							<div class="testimonial-controls">
-								<button type="button" class="testimonial-prev" aria-label="Previous testimonial">&#8249;</button>
-								<button type="button" class="testimonial-next" aria-label="Next testimonial">&#8250;</button>
+								<div class="testimonial-controls">
+									<button type="button" class="testimonial-prev" aria-label="Previous testimonial">&#8249;</button>
+									<button type="button" class="testimonial-next" aria-label="Next testimonial">&#8250;</button>
+								</div>
 							</div>
 							<div class="testimonial-indicators" aria-label="Testimonial navigation"></div>
 						</div>
