@@ -1384,7 +1384,7 @@ input, select, textarea {
 							text-align: center;
 							min-width: 7.5rem;
 							height: 2.75rem;
-							padding: 0 1.25rem 0 calc(1.25rem + 0.2rem);
+							padding: 0 1.25rem;
 							text-transform: uppercase;
 							letter-spacing: 0.2rem;
 							font-size: 0.8rem;
