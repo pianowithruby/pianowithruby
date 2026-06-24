@@ -1358,6 +1358,10 @@ input, select, textarea {
 			#header nav ul li {
 				padding-left: 0;
 				border-left: solid 1px #ffffff;
+				-moz-flex: 1 1 0;
+				-webkit-flex: 1 1 0;
+				-ms-flex: 1 1 0;
+				flex: 1 1 0;
 			}
 
 				#header nav ul li:first-child {
@@ -1377,9 +1381,10 @@ input, select, textarea {
 							-webkit-justify-content: center;
 							-ms-justify-content: center;
 							justify-content: center;
+							text-align: center;
 							min-width: 7.5rem;
 							height: 2.75rem;
-							padding: 0 1.25rem;
+							padding: 0 1.25rem 0 calc(1.25rem + 0.2rem);
 							text-transform: uppercase;
 							letter-spacing: 0.2rem;
 							font-size: 0.8rem;
