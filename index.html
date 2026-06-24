@@ -121,8 +121,25 @@
 				border: 1px solid rgba(255,255,255,0.15);
 				border-radius: 1rem;
 				padding: 1.75rem 1.5rem;
-				margin: 1.5rem 0 2rem;
+				margin: 0;
 				box-shadow: 0 0 0.75rem rgba(0,0,0,0.08);
+			}
+
+			#testimonials-carousel {
+				margin: 1.5rem 0 2rem;
+			}
+
+			#testimonials-carousel .testimonial-slides {
+				position: relative;
+				touch-action: pan-y;
+			}
+
+			#testimonials-carousel .testimonial-slide {
+				display: none;
+			}
+
+			#testimonials-carousel .testimonial-slide.active {
+				display: block;
 			}
 
 			.testimonial p {
@@ -177,9 +194,66 @@
 							background: rgba(255,255,255,0.12);
 						}
 
+			#testimonials-carousel .testimonial-controls {
+				display: flex;
+				justify-content: center;
+				gap: 0.75rem;
+				margin: 1rem 0 0.85rem;
+			}
+
+			#testimonials-carousel .testimonial-controls button {
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
+				width: 2.4rem;
+				height: 2.4rem;
+				padding: 0;
+				font-size: 1.1rem;
+				line-height: 1;
+				border-radius: 999px;
+				border: 1px solid rgba(255,255,255,0.35);
+				background: rgba(255,255,255,0.08);
+				color: inherit;
+				cursor: pointer;
+			}
+
+			#testimonials-carousel .testimonial-controls button:hover {
+				background: rgba(255,255,255,0.15);
+			}
+
+			#testimonials-carousel .testimonial-indicators {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				gap: 0.5rem;
+			}
+
+			#testimonials-carousel .testimonial-indicators button {
+				width: 0.85rem;
+				height: 0.85rem;
+				border-radius: 50%;
+				border: 1px solid rgba(255,255,255,0.8);
+				background: rgba(255,255,255,0.35);
+				padding: 0;
+				cursor: pointer;
+			}
+
+			#testimonials-carousel .testimonial-indicators button.active {
+				background: rgba(255,255,255,0.95);
+			}
+
 @media screen and (max-width: 736px) {
 				.testimonial {
 					padding: 1.5rem 1rem;
+				}
+
+				#testimonials-carousel .testimonial-controls button {
+					width: 2.75rem;
+					height: 2.75rem;
+				}
+
+				#testimonials-carousel .testimonial-toggle {
+					width: 100%;
 				}
 			}
 
@@ -327,15 +401,31 @@
 
 						<!-- Photos -->
 							<article id="about">
-						<div class="testimonial">
+						<div id="testimonials-carousel">
 							<h2 class="major">Testimonials</h2>
-							<div class="testimonial-text">
-								<p>“My daughter transferred to Ms. Ruby after completing her ABRSM Level 5 exam with another teacher. At the time, we were looking for a different direction, as both her progress and passion for piano seemed to be plateauing.</p>
-								<p>Ms. Ruby is a gem! She has high expectations for her students while bringing just the right touch of humor to her lessons, and she has a real gift for connecting with tweens and teens. My daughter transitioned to the CM system with ease and, more importantly, has rediscovered her love of playing the piano.</p>
-								<p>As a classically trained pianist myself (albeit a very rusty one now), I know firsthand how much a teacher can shape a student’s experience. While I loved music growing up, I was intimidated by my teacher and often felt afraid to ask questions or speak up. Ms. Ruby is the teacher I wish I had growing up, and I am frankly a little jealous of the close relationship my daughter enjoys with her piano teacher.”</p>
+							<div class="testimonial-slides">
+								<section class="testimonial testimonial-slide active" aria-hidden="false">
+									<div class="testimonial-text" id="testimonial-text-1">
+										<p>"My daughter transferred to Ms. Ruby after completing her ABRSM Level 5 exam with another teacher. At the time, we were looking for a different direction, as both her progress and passion for piano seemed to be plateauing.</p>
+										<p>Ms. Ruby is a gem! She has high expectations for her students while bringing just the right touch of humor to her lessons, and she has a real gift for connecting with tweens and teens. My daughter transitioned to the CM system with ease and, more importantly, has rediscovered her love of playing the piano.</p>
+										<p>As a classically trained pianist myself (albeit a very rusty one now), I know firsthand how much a teacher can shape a student's experience. While I loved music growing up, I was intimidated by my teacher and often felt afraid to ask questions or speak up. Ms. Ruby is the teacher I wish I had growing up, and I am frankly a little jealous of the close relationship my daughter enjoys with her piano teacher."</p>
+									</div>
+									<button type="button" class="testimonial-toggle" aria-expanded="false" aria-controls="testimonial-text-1">Read more</button>
+									<p class="testimonial-author">~Karen Chiu, Parent</p>
+								</section>
+								<section class="testimonial testimonial-slide" aria-hidden="true">
+									<div class="testimonial-text" id="testimonial-text-2">
+										<p>"Ms. Ruby has been such a kind, patient, and funny teacher. After leaving another instructor when I was eight, I was afraid that I wouldn't find the right fit. However, from the very beginning, Ms. Ruby made me feel comfortable and excited to learn. Her positive attitude and love for the piano helped me discover my own passion for the instrument. She creates such a welcoming environment that lessons are both productive and enjoyable. I can tell that Ms. Ruby genuinely cares about her students, and I am so grateful to have found such an amazing teacher. I highly recommend her to anyone looking to learn piano!"</p>
+									</div>
+									<button type="button" class="testimonial-toggle" aria-expanded="false" aria-controls="testimonial-text-2">Read more</button>
+									<p class="testimonial-author">~Olivia Nguyen, Student</p>
+								</section>
 							</div>
-							<button type="button" class="testimonial-toggle" aria-expanded="false">Read more</button>
-							<p class="testimonial-author">~Karen Chiu, Parent</p>
+							<div class="testimonial-controls">
+								<button type="button" class="testimonial-prev" aria-label="Previous testimonial">&#8249;</button>
+								<button type="button" class="testimonial-next" aria-label="Next testimonial">&#8250;</button>
+							</div>
+							<div class="testimonial-indicators" aria-label="Testimonial navigation"></div>
 						</div>
 							<h2 class="major">Musical Moments</h2>
 <div class="studio-memories" style="text-align:center; margin-top:1rem;">
@@ -459,24 +549,134 @@
 
 					resetInterval();
 				})();
-			</script>			<script>
+			</script>
+			<script>
 				(function() {
-					var toggles = document.querySelectorAll('.testimonial-toggle');
+					var carousel = document.getElementById('testimonials-carousel');
+					if (!carousel) return;
 
-					toggles.forEach(function(toggle) {
-						var testimonial = toggle.closest('.testimonial');
-						var text = testimonial && testimonial.querySelector('.testimonial-text');
+					var slides = Array.prototype.slice.call(carousel.querySelectorAll('.testimonial-slide'));
+					var slidesContainer = carousel.querySelector('.testimonial-slides');
+					var prevButton = carousel.querySelector('.testimonial-prev');
+					var nextButton = carousel.querySelector('.testimonial-next');
+					var indicators = carousel.querySelector('.testimonial-indicators');
+					var currentIndex = 0;
+					var touchStartX = null;
+					var touchStartY = null;
 
-						if (!text) {
+					if (!slides.length || !indicators) return;
+
+					function collapseSlide(slide) {
+						var text = slide.querySelector('.testimonial-text');
+						var toggle = slide.querySelector('.testimonial-toggle');
+
+						if (text) {
+							text.classList.remove('expanded');
+						}
+
+						if (toggle) {
+							toggle.textContent = 'Read more';
+							toggle.setAttribute('aria-expanded', 'false');
+						}
+					}
+
+					function setActiveSlide(index) {
+						currentIndex = (index + slides.length) % slides.length;
+
+						slides.forEach(function(slide, i) {
+							var isActive = i === currentIndex;
+							slide.classList.toggle('active', isActive);
+							slide.setAttribute('aria-hidden', isActive ? 'false' : 'true');
+
+							if (!isActive) {
+								collapseSlide(slide);
+							}
+						});
+
+						var dots = Array.prototype.slice.call(indicators.querySelectorAll('button'));
+						dots.forEach(function(dot, i) {
+							var isActive = i === currentIndex;
+							dot.classList.toggle('active', isActive);
+							dot.setAttribute('aria-selected', isActive ? 'true' : 'false');
+						});
+					}
+
+					slides.forEach(function(_, i) {
+						var dot = document.createElement('button');
+						dot.type = 'button';
+						dot.setAttribute('aria-label', 'Go to testimonial ' + (i + 1));
+						dot.setAttribute('aria-selected', i === 0 ? 'true' : 'false');
+						dot.classList.toggle('active', i === 0);
+						dot.addEventListener('click', function() {
+							setActiveSlide(i);
+						});
+						indicators.appendChild(dot);
+					});
+
+					if (prevButton) {
+						prevButton.addEventListener('click', function() {
+							setActiveSlide(currentIndex - 1);
+						});
+					}
+
+					if (nextButton) {
+						nextButton.addEventListener('click', function() {
+							setActiveSlide(currentIndex + 1);
+						});
+					}
+
+					if (slidesContainer) {
+						slidesContainer.addEventListener('touchstart', function(event) {
+							if (!event.touches || event.touches.length !== 1) {
+								return;
+							}
+
+							touchStartX = event.touches[0].clientX;
+							touchStartY = event.touches[0].clientY;
+						}, { passive: true });
+
+						slidesContainer.addEventListener('touchend', function(event) {
+							if (touchStartX === null || touchStartY === null || !event.changedTouches || !event.changedTouches.length) {
+								touchStartX = null;
+								touchStartY = null;
+								return;
+							}
+
+							var touchEndX = event.changedTouches[0].clientX;
+							var touchEndY = event.changedTouches[0].clientY;
+							var deltaX = touchEndX - touchStartX;
+							var deltaY = touchEndY - touchStartY;
+
+							if (Math.abs(deltaX) > 50 && Math.abs(deltaX) > Math.abs(deltaY) * 1.2) {
+								if (deltaX < 0) {
+									setActiveSlide(currentIndex + 1);
+								} else {
+									setActiveSlide(currentIndex - 1);
+								}
+							}
+
+							touchStartX = null;
+							touchStartY = null;
+						}, { passive: true });
+					}
+
+					slides.forEach(function(slide) {
+						var toggle = slide.querySelector('.testimonial-toggle');
+						var text = slide.querySelector('.testimonial-text');
+
+						if (!toggle || !text) {
 							return;
 						}
 
 						toggle.addEventListener('click', function() {
 							var expanded = text.classList.toggle('expanded');
 							toggle.textContent = expanded ? 'Show less' : 'Read more';
-							toggle.setAttribute('aria-expanded', expanded);
+							toggle.setAttribute('aria-expanded', expanded ? 'true' : 'false');
 						});
 					});
+
+					setActiveSlide(0);
+
 				})();
 			</script>
 	</body>
